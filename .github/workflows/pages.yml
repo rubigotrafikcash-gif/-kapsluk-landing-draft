@@ -26,7 +26,7 @@ jobs:
       - name: Собрать артефакт без служебных файлов
         run: |
           mkdir -p _site
-          cp -r index.html favicon.svg robots.txt .nojekyll _astro _site/
+          cp -r index.html favicon.svg robots.txt .nojekyll _astro v2 _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
