@@ -10,5 +10,5 @@
 `SITE_URL=https://rubigotrafikcash-gif.github.io BASE_PATH=/-kapsluk-landing-draft/ npm run build`
 и заменить файлы здесь содержимым `dist/`.
 
-Публикация: Settings → Pages → Source «Deploy from a branch», ветка `main`, папка `/ (root)`.
+Публикация: Settings → Pages → Source «GitHub Actions» (workflow `.github/workflows/pages.yml`).
 Файл `.nojekyll` нужен, чтобы GitHub отдавал папку `_astro`.
