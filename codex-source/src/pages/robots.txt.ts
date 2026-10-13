@@ -1,0 +1,1 @@
+export function GET(){return new Response(import.meta.env.PUBLIC_DRAFT !== 'false'?'User-agent: *\nDisallow: /\n':'User-agent: *\nAllow: /\n',{headers:{'Content-Type':'text/plain'}});}

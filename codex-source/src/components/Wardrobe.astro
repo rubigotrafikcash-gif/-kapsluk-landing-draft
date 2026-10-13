@@ -1,0 +1,38 @@
+---
+const base = import.meta.env.BASE_URL;
+const flight = [
+  ['coat', '-34', '-14', '1'], ['bag', '31', '-21', '2'],
+  ['shirt', '-24', '18', '3'], ['skirt', '28', '17', '4'],
+  ['bag', '-31', '4', '5'], ['coat', '29', '-2', '6'],
+  ['skirt', '-18', '-24', '7'], ['shirt', '20', '25', '8']
+] as const;
+---
+<div class="wardrobe" id="wardrobe" aria-hidden="true">
+  <div class="cabinet-depth">
+    <div class="closet-interior">
+      <div class="warm-light"></div>
+      <div class="upper-shelf">
+        <span class="box box-one"></span><span class="box box-two"></span>
+        <img class="shelf-bag" src={`${base}bag.svg`} alt="" width="180" height="230" />
+      </div>
+      <div class="rail"></div>
+      <div class="hanger hanger-one"></div><div class="hanger hanger-two"></div><div class="hanger hanger-three"></div>
+      <img class="closet-garment closet-coat" src={`${base}coat.svg`} alt="" width="240" height="340" />
+      <img class="closet-garment closet-shirt" src={`${base}shirt.svg`} alt="" width="220" height="320" />
+      <img class="closet-garment closet-skirt" src={`${base}skirt.svg`} alt="" width="220" height="320" />
+      <div class="lower-shelf"></div>
+      <div class="folded folded-one"></div><div class="folded folded-two"></div><div class="folded folded-three"></div>
+      <div class="shoe shoe-one"></div><div class="shoe shoe-two"></div>
+    </div>
+    <div class="flight-layer">
+      {flight.map(([name,x,y,index]) => (
+        <div class="flight-item" data-x={x} data-y={y} data-index={index}>
+          <img src={`${base}${name}.svg`} alt="" width="240" height="340" draggable="false" />
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="door door-left"><span class="door-panel panel-top"></span><span class="door-panel panel-bottom"></span><span class="door-letter">К</span><span class="handle handle-left"></span></div>
+  <div class="door door-right"><span class="door-panel panel-top"></span><span class="door-panel panel-bottom"></span><span class="door-letter">Л</span><span class="handle handle-right"></span></div>
+  <div class="cabinet-frame"></div>
+</div>

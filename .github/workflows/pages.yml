@@ -1,6 +1,4 @@
-# Публикация готовой статики прототипа на GitHub Pages (сборки нет — файлы уже собраны).
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches: [main]
@@ -23,10 +21,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Собрать артефакт без служебных файлов
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Codex landing
+        working-directory: codex-source
+        env:
+          SITE_URL: https://rubigotrafikcash-gif.github.io
+          BASE_PATH: /-kapsluk-landing-draft/codex/
+          ASTRO_TELEMETRY_DISABLED: '1'
         run: |
-          mkdir -p _site
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Assemble both drafts
+        run: |
+          mkdir -p _site/codex
           cp -r index.html favicon.svg robots.txt .nojekyll _astro v2 _site/
+          cp -r codex-source/dist/. _site/codex/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

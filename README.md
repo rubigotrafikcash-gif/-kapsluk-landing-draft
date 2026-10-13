@@ -1,14 +1,8 @@
-# ПРОТОТИП CLAUDE — лендинг КАПСЛУК (черновик)
+# Черновики лендинга КАПСЛУК
 
-Это **собранная статика** прототипа лендинга Telegram-бота КАПСЛУК, подготовленного Claude.
-Не боевой сайт: стоит `noindex`, заглушки подсвечены жёлтым. Параллельно делается вариант в Codex.
+- Корень Pages: прототип Claude, исходный собранный вариант.
+- `/codex/`: согласованный вариант Codex. Исходники находятся в `codex-source/`; GitHub Actions собирает Astro с базовым путём `/-kapsluk-landing-draft/codex/`.
 
-Исходники лежат в приватном репозитории `kapsula-replit`, ветка `claude/landing-prototype`,
-папка `prototypes/landing-claude`. Здесь только результат сборки, редактировать его не нужно.
+Оба варианта остаются черновиками с `noindex`. Публикация запускается workflow `.github/workflows/pages.yml` при обновлении `main`; в Settings → Pages источником должен быть **GitHub Actions**.
 
-Обновление: в исходниках выполнить
-`SITE_URL=https://rubigotrafikcash-gif.github.io BASE_PATH=/-kapsluk-landing-draft/ npm run build`
-и заменить файлы здесь содержимым `dist/`.
-
-Публикация: Settings → Pages → Source «GitHub Actions» (workflow `.github/workflows/pages.yml`).
-Файл `.nojekyll` нужен, чтобы GitHub отдавал папку `_astro`.
+Перейти в бот: https://t.me/KapsulaStylistBot?start=website. Telegram покажет пользователю кнопку «Запустить».

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="430 145 190 335"><defs>
+ <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#e6dece" /><stop offset="1" stop-color="#cfc3b0" /></linearGradient>
+ <linearGradient id="back" x2="1" y2="0"><stop stop-color="#cec1ae" /><stop offset=".45" stop-color="#e8dfcf" /><stop offset="1" stop-color="#cfc1ad" /></linearGradient>
+ <linearGradient id="coat" x2="1" y2="1"><stop stop-color="#c9b9a1" /><stop offset=".5" stop-color="#afa08b" /><stop offset="1" stop-color="#8d7e69" /></linearGradient>
+ <linearGradient id="shirt" x2="1" y2="1"><stop stop-color="#fffff6" /><stop offset=".55" stop-color="#e8e5db" /><stop offset="1" stop-color="#c5c2b7" /></linearGradient>
+ <linearGradient id="skirt" x2="1" y2="0"><stop stop-color="#313a33" /><stop offset=".5" stop-color="#54604e" /><stop offset="1" stop-color="#29332d" /></linearGradient>
+ <linearGradient id="bag" x2="0" y2="1"><stop stop-color="#97384b" /><stop offset="1" stop-color="#5a1d2a" /></linearGradient>
+ <filter id="shadow" x="-40%" y="-20%" width="180%" height="150%"><feDropShadow dx="3" dy="12" stdDeviation="8" flood-color="#2a2118" flood-opacity=".2" /></filter>
+ <pattern id="grain" width="65" height="180" patternUnits="userSpaceOnUse"><path d="M18 0Q14 60 20 180M30 0Q37 65 30 180M55 0Q47 120 58 180" stroke="#6d5a40" fill="none" opacity=".035" stroke-width="1" /></pattern>
+</defs>
+<g class="garment garment-skirt" filter="url(#shadow)"><path d="M485 164h82l38 291q-80 16-159 0z" fill="url(#skirt)" /><path d="M487 167h78v18h-81z" fill="#28332c" /><path d="M497 188l-22 263M516 187l-9 270M534 187l9 270M554 187l24 264" stroke="#1b271f" stroke-opacity=".35" stroke-width="3" /></g>
+
+</svg>
