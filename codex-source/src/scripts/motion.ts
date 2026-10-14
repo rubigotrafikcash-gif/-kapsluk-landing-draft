@@ -12,7 +12,18 @@ final.inert=true;chrome.forEach(e=>e.inert=true);
 const params=new URLSearchParams(location.search);
 const forced=params.get('motion')==='1';
 const preference=matchMedia('(prefers-reduced-motion: reduce)');
-let reduced=preference.matches&&!forced;
+let storedReduced=false;
+try{storedReduced=['0','off','reduce','reduced'].includes(localStorage.getItem('kapsluk-motion')||'');}catch{}
+let reduced=!forced&&(preference.matches||storedReduced);
+root.classList.toggle('forced-motion',forced);
+root.dataset.motionMode=forced?'forced':reduced?'reduced':'full';
+if(forced){
+ const badge=document.createElement('span');
+ badge.className='motion-mode';
+ badge.textContent='Forced motion';
+ badge.setAttribute('aria-label','Анимация принудительно включена');
+ document.body.append(badge);
+}
 let state:'closed'|'travel'|'final'='closed';
 let scene:ReturnType<typeof import('./scene').createWardrobe>|null=null;
 let elapsed=0,last=0,paused=false,frame=0;
@@ -32,7 +43,7 @@ skip.addEventListener('click',()=>finish());
 pause.addEventListener('click',()=>{paused=!paused;pause.textContent=paused?'Продолжить':'Пауза';pause.setAttribute('aria-pressed',String(paused));});
 document.getElementById('restart')!.addEventListener('click',restart);
 document.getElementById('brand')!.addEventListener('click',e=>{e.preventDefault();restart();});
-preference.addEventListener('change',()=>{reduced=preference.matches&&!forced;scene?.setMotion(!reduced);if(reduced&&state==='travel')finish();});
+preference.addEventListener('change',()=>{reduced=!forced&&(preference.matches||storedReduced);root.dataset.motionMode=forced?'forced':reduced?'reduced':'full';scene?.setMotion(!reduced);if(reduced&&state==='travel')finish();});
 document.addEventListener('visibilitychange',()=>{last=0;});
 const dialogs=[...document.querySelectorAll<HTMLDialogElement>('dialog')];
 let returnFocus:HTMLElement|null=null;
