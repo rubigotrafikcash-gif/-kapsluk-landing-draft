@@ -18,7 +18,6 @@ const base = import.meta.env.BASE_URL;
         <a class="close" href={base} aria-label="Закрыть предпросмотр"></a>
       </header>
       <div class="intro">
-        <p class="eyebrow">Навигация</p>
         <h1>Меню</h1>
       </div>
       <a class="cta" href={`${base}app/`}><span>Создать капсулу</span><span class="arrow" aria-hidden="true"></span></a>
@@ -53,19 +52,18 @@ const base = import.meta.env.BASE_URL;
   .close{width:44px;height:44px;position:relative;color:inherit}
   .close::before,.close::after{content:"";position:absolute;left:12px;top:21px;width:21px;height:1px;background:currentColor}
   .close::before{transform:rotate(45deg)}.close::after{transform:rotate(-45deg)}
-  .intro{margin:clamp(28px,7svh,58px) 0 18px}
-  .eyebrow{margin:0 0 8px;color:#756453;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .intro{margin:clamp(32px,7svh,60px) 0 18px}
   h1{margin:0;font-family:Georgia,serif;font-size:clamp(40px,12vw,48px);font-weight:400;line-height:1}
-  .cta{margin:18px 0 25px;min-height:60px;padding:0 20px;background:#952c29;color:#fff8ef;text-decoration:none;display:flex;align-items:center;justify-content:space-between;font-size:17px}
+  .cta{margin:18px 0 8px;min-height:60px;padding:0 20px;background:#952c29;color:#fff8ef;text-decoration:none;display:flex;align-items:center;justify-content:space-between;font-size:17px}
   .arrow{position:relative;width:25px;height:12px;display:block;flex:0 0 auto}
   .arrow::before{content:"";position:absolute;left:0;right:1px;top:6px;height:1px;background:currentColor}
   .arrow::after{content:"";position:absolute;right:1px;top:2px;width:8px;height:8px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
   nav{border-top:1px solid #d7cbbc}
-  nav button{width:100%;min-height:59px;padding:0;border:0;border-bottom:1px solid #d7cbbc;background:transparent;display:flex;align-items:center;justify-content:space-between;color:inherit;font:inherit;font-size:17px;text-align:left}
+  nav button{width:100%;min-height:59px;padding:0 20px;border:0;border-bottom:1px solid #d7cbbc;background:transparent;display:flex;align-items:center;justify-content:space-between;color:inherit;font:inherit;font-size:17px;text-align:left}
   nav button .arrow{width:19px;color:#8a7865}
   .bottom{margin-top:auto;padding-top:22px}
   .legal{display:flex;flex-direction:column;gap:10px}
   .legal a{color:#706153;font-size:12px;line-height:1.35;text-decoration:underline;text-underline-offset:3px}
   .note{margin:17px 0 0;color:#8a7968;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
-  @media(max-height:700px){.intro{margin:18px 0 12px}.cta{margin:13px 0 16px;min-height:54px}nav button{min-height:49px}.bottom{padding-top:14px}.note{display:none}}
+  @media(max-height:700px){.intro{margin:18px 0 12px}.cta{margin:13px 0 7px;min-height:54px}nav button{min-height:49px}.bottom{padding-top:14px}.note{display:none}}
 </style>
