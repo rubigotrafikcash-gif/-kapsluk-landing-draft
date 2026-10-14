@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import {site} from '../content/site';
 import {chapters} from '../scripts/choreography';
+import PrivacyContent from '../components/PrivacyContent.astro';
+import TermsContent from '../components/TermsContent.astro';
 const base = import.meta.env.BASE_URL;
 const draft = import.meta.env.PUBLIC_DRAFT !== 'false';
 ---
@@ -29,14 +31,16 @@ const draft = import.meta.env.PUBLIC_DRAFT !== 'false';
 </section>
 <div class="story-controls" id="story-controls"><button id="pause" hidden>Пауза</button><button id="skip-story">Пропустить</button></div>
 <section id="final-screen" aria-labelledby="final-title">
-<div class="final-copy"><h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2><p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p><a class="primary" href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Открыть бот в Telegram <span aria-hidden="true">↗</span></a><p class="offer-note">В Telegram нажмите «Запустить», чтобы начать диалог.</p></div>
+<div class="final-copy"><h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2><p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p><a class="primary" href={`${base}app/`}>Открыть веб-приложение <span aria-hidden="true">→</span></a><p class="offer-note">Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></p><p class="legal-links"><button type="button" data-dialog="privacy">Политика обработки данных</button><span aria-hidden="true"> · </span><button type="button" data-dialog="terms">Условия использования</button></p></div>
 </section>
 <header id="top-bar" class="chrome"><a id="brand" href="#welcome" aria-label="КАПСЛУК — начать заново"><img src={`${base}logo.jpeg`} width="36" height="36" alt=""/><span>КАПСЛУК</span></a><button data-dialog="menu">Меню <span aria-hidden="true">＋</span></button></header>
 <footer id="bottom-bar" class="chrome"><button id="restart">Повторить путешествие</button></footer>
 <p id="story-status" class="sr-only" role="status" aria-live="polite"></p>
 </main>
-<dialog id="dialog-menu" aria-labelledby="menu-title"><button class="close" aria-label="Закрыть">×</button><p class="eyebrow">КАПСЛУК</p><h2 id="menu-title">Подробнее</h2><nav>{site.sections.map(s=><button data-dialog={s.id}>{s.label}<span aria-hidden="true">↗</span></button>)}</nav></dialog>
-{site.sections.map(s=><dialog id={`dialog-${s.id}`} aria-labelledby={`title-${s.id}`}><button class="close" aria-label="Закрыть">×</button><h2 id={`title-${s.id}`}>{s.title}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.id==='faq'&&site.faq.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</dialog>)}
+<dialog id="dialog-menu" aria-labelledby="menu-title"><button class="close" aria-label="Закрыть">×</button><p class="eyebrow">КАПСЛУК</p><h2 id="menu-title">Подробнее</h2><nav><a class="legal-menu-link" href={`${base}app/`}>Открыть веб-приложение →</a>{site.sections.map(s=><button data-dialog={s.id}>{s.label}<span aria-hidden="true">↗</span></button>)}<button data-dialog="privacy">Политика обработки персональных данных<span aria-hidden="true">↗</span></button><button data-dialog="terms">Условия использования<span aria-hidden="true">↗</span></button><a class="legal-menu-link" href={site.supportUrl} target="_blank" rel="noopener noreferrer">Поддержка в Telegram ↗</a></nav></dialog>
+{site.sections.map(s=><dialog id={`dialog-${s.id}`} aria-labelledby={`title-${s.id}`}><button class="close" aria-label="Закрыть">×</button><h2 id={`title-${s.id}`}>{s.title}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.id==='faq'&&site.faq.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}{s.id==='faq'&&<a class="dialog-support" href={site.supportUrl} target="_blank" rel="noopener noreferrer">Написать в поддержку: @TairPromo_Support2 ↗</a>}</dialog>)}
+<dialog id="dialog-privacy" class="legal-dialog" aria-labelledby="privacy-title"><button class="close" aria-label="Закрыть">×</button><span id="privacy-title" class="sr-only">Политика обработки персональных данных</span><PrivacyContent /></dialog>
+<dialog id="dialog-terms" class="legal-dialog" aria-labelledby="terms-title"><button class="close" aria-label="Закрыть">×</button><span id="terms-title" class="sr-only">Условия использования</span><TermsContent /></dialog>
 <noscript><style>#welcome,#stage,.story-controls{display:none!important}#final-screen,.chrome{visibility:visible!important;opacity:1!important;pointer-events:auto!important}#final-screen{background:#f2ece2}body{overflow:auto}</style><div class="no-js">Для анимации шкафа включите JavaScript. Перейти в Telegram можно по кнопке выше.</div></noscript>
 <script>import '../scripts/motion';</script>
 </body></html>
