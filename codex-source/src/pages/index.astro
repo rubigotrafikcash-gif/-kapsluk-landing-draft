@@ -38,11 +38,22 @@ const draft = import.meta.env.PUBLIC_DRAFT !== 'false';
 <p id="story-status" class="sr-only" role="status" aria-live="polite"></p>
 </main>
 <dialog id="dialog-menu" aria-labelledby="menu-title">
-  <button class="close" aria-label="Закрыть">×</button>
+  <div class="menu-top">
+    <div class="menu-brand"><img src={`${base}logo.jpeg`} width="34" height="34" alt=""/><span>КАПСЛУК</span></div>
+    <button class="close" aria-label="Закрыть">×</button>
+  </div>
   <h2 id="menu-title">Меню</h2>
-  <nav>
-    <a class="menu-link" href={`${base}app/`}><span>Открыть веб-приложение</span><span class="menu-arrow" aria-hidden="true"></span></a>
-    {site.sections.map(s=><button class="menu-link" data-dialog={s.id}><span>{s.label}</span><span class="menu-arrow" aria-hidden="true"></span></button>)}
+  <a class="menu-cta" href={`${base}app/`}><span>Создать капсулу</span><span class="menu-arrow" aria-hidden="true"></span></a>
+  <nav aria-label="Основные разделы">
+    {site.sections.filter(s=>['result','process','faq'].includes(s.id)).map(s=><button class="menu-link" data-dialog={s.id}><span>{s.label}</span><span class="menu-arrow" aria-hidden="true"></span></button>)}
+    <button class="menu-link" data-dialog="contacts"><span>Контакты</span><span class="menu-arrow" aria-hidden="true"></span></button>
+  </nav>
+  <div class="menu-legal">
+    <button type="button" data-dialog="privacy">Политика обработки персональных данных</button>
+    <button type="button" data-dialog="terms">Условия использования</button>
+  </div>
+</dialog>
+{site.sections.map(s=><button class="menu-link" data-dialog={s.id}><span>{s.label}</span><span class="menu-arrow" aria-hidden="true"></span></button>)}
     <button class="menu-link" data-dialog="privacy"><span>Политика конфиденциальности</span><span class="menu-arrow" aria-hidden="true"></span></button>
     <button class="menu-link" data-dialog="terms"><span>Условия использования</span><span class="menu-arrow" aria-hidden="true"></span></button>
     <button class="menu-link" data-dialog="contacts"><span>Контакты</span><span class="menu-arrow" aria-hidden="true"></span></button>
