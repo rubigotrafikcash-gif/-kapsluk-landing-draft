@@ -41,13 +41,29 @@
 
 .legal-links{font-size:.78rem;line-height:1.6;margin-top:18px;color:#645547}.legal-links button{display:inline;min-height:44px;padding:8px 2px;text-decoration:underline;text-underline-offset:3px}.legal-menu-link{display:block;padding:16px 0;border-bottom:1px solid #d6cabc;font-size:.9rem}.dialog-support{display:inline-block;margin-top:26px;text-decoration:underline;text-underline-offset:4px}.legal-dialog{width:min(820px,calc(100% - 30px))}.legal-copy h2{margin-top:10px}.legal-copy h3{font-size:1.08rem;line-height:1.35;margin:30px 0 8px}.legal-copy aside{margin:18px 0 28px;padding:18px;border:1px solid #b59b79;font-size:.9rem;line-height:1.55}.legal-copy a{text-decoration:underline;text-underline-offset:3px}.legal-page{overflow:auto;background:#f7f2e9;color:#342c25}.legal-page main{max-width:900px;margin:auto;padding:40px 24px}.legal-page main>a{text-decoration:underline}.legal-page .legal-copy h2{font:400 clamp(38px,5vw,56px)/1 var(--display);margin:30px 0 24px}.legal-page .legal-copy p{line-height:1.7;margin:14px 0;overflow-wrap:anywhere}.legal-page .legal-copy h3{font-size:1.3rem;margin:30px 0 14px}
 
-/* Clear, compact menu with drawn arrows so mobile platforms cannot render emoji. */
-.menu-link{width:100%;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;border-bottom:1px solid #d6cabc;padding:15px 2px;font-size:.94rem;line-height:1.35}
+/* Menu: one visual grid for the primary action and the section list. */
+#dialog-menu{width:min(430px,100%);height:min(820px,100svh);max-height:100svh;padding:max(18px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));overflow:auto}
+#dialog-menu[open]{display:flex;flex-direction:column}
+.menu-top{display:flex;align-items:center;justify-content:space-between}
+.menu-brand{display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.17em}
+.menu-brand img{object-fit:cover}
+#dialog-menu .menu-top .close{position:relative;float:none;top:auto;width:44px;height:44px;padding:0;background:transparent;font-size:0}
+#dialog-menu .menu-top .close::before,#dialog-menu .menu-top .close::after{content:"";position:absolute;left:12px;top:21px;width:21px;height:1px;background:currentColor}
+#dialog-menu .menu-top .close::before{transform:rotate(45deg)}
+#dialog-menu .menu-top .close::after{transform:rotate(-45deg)}
+#dialog-menu h2{margin:clamp(32px,7svh,60px) 0 18px}
+.menu-cta{margin:18px 0 8px;min-height:60px;padding:0 20px;background:#952c29;color:#fff8ef;display:flex;align-items:center;justify-content:space-between;font-size:.94rem}
+#dialog-menu nav{border-top:1px solid #d7cbbc}
+.menu-link{width:100%;min-height:59px;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;border-bottom:1px solid #d7cbbc;padding:0 20px;font-size:.94rem;line-height:1.35}
 .menu-link>span:first-child{min-width:0}
 .menu-arrow{position:relative;width:22px;height:12px;flex:0 0 22px}
-.menu-arrow::before{content:'';position:absolute;right:1px;top:5px;width:20px;height:1px;background:currentColor}
-.menu-arrow::after{content:'';position:absolute;right:1px;top:2px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.menu-arrow::before{content:"";position:absolute;right:1px;top:5px;width:20px;height:1px;background:currentColor}
+.menu-arrow::after{content:"";position:absolute;right:1px;top:2px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.menu-legal{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-top:auto;padding-top:22px}
+.menu-legal button{min-height:34px;padding:5px 0;color:#706153;font-size:.67rem;line-height:1.35;text-align:left;text-decoration:underline;text-underline-offset:3px}
 .contacts-list{display:grid;margin-top:24px;border-top:1px solid #d6cabc}
 .contacts-list a{display:grid;gap:5px;padding:17px 2px;border-bottom:1px solid #d6cabc;overflow-wrap:anywhere}
 .contacts-list span{font-size:.78rem;color:#756453}
 .contacts-list strong{font-size:.94rem;font-weight:400}
+@media(max-width:460px){#dialog-menu{margin:0;max-width:none;border:0}}
+@media(max-height:700px){#dialog-menu h2{margin:18px 0 12px}.menu-cta{margin:13px 0 7px;min-height:54px}.menu-link{min-height:49px}.menu-legal{padding-top:14px}}
