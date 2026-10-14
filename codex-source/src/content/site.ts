@@ -1,5 +1,5 @@
 export const site = {
-  name:'КАПСЛУК', version:'codex-v11', telegramUrl:'https://t.me/KapsulaStylistBot?start=website', supportUrl:'https://t.me/TairPromo_Support2',
+  name:'КАПСЛУК', version:'codex-v12', telegramUrl:'https://t.me/KapsulaStylistBot?start=website', supportUrl:'https://t.me/TairPromo_Support2',
   sections:[
     {id:'result',label:'Что будет в PDF',title:'Что получит клиент',paragraphs:['Лукбук собирает результат вашей работы в одном документе: обложка с данными стилиста, общая капсула, страницы сочетаний и ссылки на товары.']},
     {id:'process',label:'Как это работает',title:'От выбранных вещей до лукбука',paragraphs:['Вы выбираете товары и решаете, какие образы предложить клиенту. Дальше работаете с капсулой в Telegram.','1. Добавляйте товары по одному: ссылкой или скриншотом. Для каждого укажите категорию, комментарий и URL.','2. Проверяйте обработанное изображение каждой вещи и подтверждайте её.','3. Когда капсула собрана, бот формирует сочетания и PDF-лукбук.']},

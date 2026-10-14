@@ -37,8 +37,19 @@ const draft = import.meta.env.PUBLIC_DRAFT !== 'false';
 <footer id="bottom-bar" class="chrome"><button id="restart">Повторить путешествие</button></footer>
 <p id="story-status" class="sr-only" role="status" aria-live="polite"></p>
 </main>
-<dialog id="dialog-menu" aria-labelledby="menu-title"><button class="close" aria-label="Закрыть">×</button><p class="eyebrow">КАПСЛУК</p><h2 id="menu-title">Подробнее</h2><nav><a class="legal-menu-link" href={`${base}app/`}>Открыть веб-приложение →</a>{site.sections.map(s=><button data-dialog={s.id}>{s.label}<span aria-hidden="true">↗</span></button>)}<button data-dialog="privacy">Политика обработки персональных данных<span aria-hidden="true">↗</span></button><button data-dialog="terms">Условия использования<span aria-hidden="true">↗</span></button><a class="legal-menu-link" href={site.supportUrl} target="_blank" rel="noopener noreferrer">Поддержка в Telegram ↗</a></nav></dialog>
-{site.sections.map(s=><dialog id={`dialog-${s.id}`} aria-labelledby={`title-${s.id}`}><button class="close" aria-label="Закрыть">×</button><h2 id={`title-${s.id}`}>{s.title}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.id==='faq'&&site.faq.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}{s.id==='faq'&&<a class="dialog-support" href={site.supportUrl} target="_blank" rel="noopener noreferrer">Написать в поддержку: @TairPromo_Support2 ↗</a>}</dialog>)}
+<dialog id="dialog-menu" aria-labelledby="menu-title">
+  <button class="close" aria-label="Закрыть">×</button>
+  <h2 id="menu-title">Меню</h2>
+  <nav>
+    <a class="menu-link" href={`${base}app/`}><span>Открыть веб-приложение</span><span class="menu-arrow" aria-hidden="true"></span></a>
+    {site.sections.map(s=><button class="menu-link" data-dialog={s.id}><span>{s.label}</span><span class="menu-arrow" aria-hidden="true"></span></button>)}
+    <button class="menu-link" data-dialog="privacy"><span>Политика конфиденциальности</span><span class="menu-arrow" aria-hidden="true"></span></button>
+    <button class="menu-link" data-dialog="terms"><span>Условия использования</span><span class="menu-arrow" aria-hidden="true"></span></button>
+    <button class="menu-link" data-dialog="contacts"><span>Контакты</span><span class="menu-arrow" aria-hidden="true"></span></button>
+  </nav>
+</dialog>
+{site.sections.map(s=><dialog id={`dialog-${s.id}`} aria-labelledby={`title-${s.id}`}><button class="close" aria-label="Закрыть">×</button><h2 id={`title-${s.id}`}>{s.title}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.id==='faq'&&site.faq.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</dialog>)}
+<dialog id="dialog-contacts" aria-labelledby="contacts-title"><button class="close" aria-label="Закрыть">×</button><h2 id="contacts-title">Контакты</h2><p>По вопросам о работе сервиса:</p><div class="contacts-list"><a href={site.supportUrl} target="_blank" rel="noopener noreferrer"><span>Telegram</span><strong>@TairPromo_Support2</strong></a><a href="mailto:support@tairpromo.ru"><span>Электронная почта</span><strong>support@tairpromo.ru</strong></a></div></dialog>
 <dialog id="dialog-privacy" class="legal-dialog" aria-labelledby="privacy-title"><button class="close" aria-label="Закрыть">×</button><span id="privacy-title" class="sr-only">Политика обработки персональных данных</span><PrivacyContent /></dialog>
 <dialog id="dialog-terms" class="legal-dialog" aria-labelledby="terms-title"><button class="close" aria-label="Закрыть">×</button><span id="terms-title" class="sr-only">Условия использования</span><TermsContent /></dialog>
 <noscript><style>#welcome,#stage,.story-controls{display:none!important}#final-screen,.chrome{visibility:visible!important;opacity:1!important;pointer-events:auto!important}#final-screen{background:#f2ece2}body{overflow:auto}</style><div class="no-js">Для анимации шкафа включите JavaScript. Перейти в Telegram можно по кнопке выше.</div></noscript>
