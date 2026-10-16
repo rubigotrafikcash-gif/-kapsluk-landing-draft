@@ -111,10 +111,12 @@ export function createWardrobe(host: HTMLElement) {
   camera.aspect=w/h;
   const tanHalfFov=Math.tan(T.MathUtils.degToRad(camera.fov/2));
   if(fusion){
-   // Frame the entire 3D wardrobe in both dimensions on every mobile aspect ratio.
-   const fitWidth=1.78/(tanHalfFov*camera.aspect*.93);
-   const fitHeight=3.50/(tanHalfFov*.87);
-   startZ=Math.max(8.7,fitWidth,fitHeight);
+   // Like a full-bleed cover image: the wardrobe fills a phone's width.
+   // Cropping at the upper/lower edges is intentional on portrait screens.
+   // Keep original framing in landscape so the travel scene remains legible.
+   const coverWidth=1.68/(tanHalfFov*camera.aspect*.99);
+   const readableHeight=3.38/(tanHalfFov*.94);
+   startZ=camera.aspect<.85?coverWidth:Math.max(8.7,readableHeight);
   }else{
    startZ=Math.max(8.7,1.88/(tanHalfFov*camera.aspect));
   }
