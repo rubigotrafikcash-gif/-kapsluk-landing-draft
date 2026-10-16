@@ -151,7 +151,7 @@ html.fusion-concept:not(.fusion-scrollable) .fusion-footer{display:none}
 @media(max-width:600px){
  .fusion-concept #final-screen{padding:clamp(82px,11svh,104px) 22px clamp(90px,12svh,118px)}
  .fusion-concept .fusion-value-copy .fusion-value-headline{gap:clamp(7px,1.5svh,13px);margin-bottom:clamp(18px,3.1svh,25px)}
- .fusion-concept .fusion-value-lead{font-size:clamp(39px,10.1vw,52px);max-width:12ch;line-height:.96}
+ .fusion-concept .fusion-value-lead{font-size:clamp(39px,10.1vw,52px);max-width:18ch;line-height:.96}
  .fusion-concept .fusion-value-time{font-size:clamp(70px,17vw,88px);line-height:.86}
  .fusion-concept .fusion-value-compare{font-size:clamp(39px,9.9vw,52px);line-height:.96}
  .fusion-concept .fusion-value-copy .fusion-value-support{font-size:clamp(15px,3.9vw,17px);line-height:1.48;max-width:35ch}
