@@ -111,10 +111,10 @@ export function createWardrobe(host: HTMLElement) {
   camera.aspect=w/h;
   const tanHalfFov=Math.tan(T.MathUtils.degToRad(camera.fov/2));
   if(fusion){
-   // Like a full-bleed cover image: the wardrobe fills a phone's width.
+   // Fusion portrait: overscan real doors by about 8 percent beyond the frame to remove side gaps.
    // Cropping at the upper/lower edges is intentional on portrait screens.
    // Keep original framing in landscape so the travel scene remains legible.
-   const coverWidth=1.68/(tanHalfFov*camera.aspect*.99);
+   const coverWidth=1.47/(tanHalfFov*camera.aspect*.99);
    const readableHeight=3.38/(tanHalfFov*.94);
    startZ=camera.aspect<.85?coverWidth:Math.max(8.7,readableHeight);
   }else{
