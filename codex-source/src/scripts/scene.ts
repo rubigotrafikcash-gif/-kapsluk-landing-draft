@@ -4,14 +4,15 @@ import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js'
 
 /** All objects share one world, one perspective camera and one lighting setup. */
 export function createWardrobe(host: HTMLElement) {
+ const fusion=import.meta.env.PUBLIC_CONCEPT_FUSION==='true';
  const renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
  renderer.setSize(host.clientWidth,host.clientHeight);
  renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFShadowMap;
- renderer.setClearColor(0xd8cbb8); renderer.outputColorSpace=T.SRGBColorSpace;
+ renderer.setClearColor(fusion?0xf0e3db:0xd8cbb8); renderer.outputColorSpace=T.SRGBColorSpace;
  renderer.toneMapping=T.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
  host.appendChild(renderer.domElement);
- const scene=new T.Scene(); scene.fog=new T.FogExp2(0xd8cbb8,.043);
+ const scene=new T.Scene(); scene.fog=new T.FogExp2(fusion?0xf0e3db:0xd8cbb8,.043);
  const camera=new T.PerspectiveCamera(42,host.clientWidth/host.clientHeight,.06,75);
  const warm=new T.HemisphereLight(0xfff6e4,0x786452,2.4);scene.add(warm);
  const key=new T.DirectionalLight(0xfff3d6,3.1);key.position.set(-5,9,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;key.shadow.camera.far=40;key.shadow.bias=-.0008;scene.add(key);
@@ -19,7 +20,9 @@ export function createWardrobe(host: HTMLElement) {
  const fill=new T.PointLight(0xffdf9b,26,16,2);fill.position.set(0,3.8,-2);scene.add(fill);
  const far=new T.PointLight(0xffe8c8,40,22,2);far.position.set(-2,4,-14);scene.add(far);
  const mat=(color:number,roughness=.75,metalness=0)=>new T.MeshStandardMaterial({color,roughness,metalness});
- const ivory=mat(0xe0d5bf), oak=mat(0x9e8464), brass=mat(0x807358,.25,.72), wall=mat(0xd7cab5);
+ const ivory=mat(0xe0d5bf), oak=mat(0x9e8464), brass=mat(fusion?0xf6f3ec:0x807358,.25,.72), wall=mat(fusion?0xe6d7cf:0xd7cab5);
+ const doorBody=fusion?mat(0xcd394f,.57):ivory;
+ const doorPanel=fusion?mat(0xb02e43,.65):mat(0xded2bd);
  const box=(w:number,h:number,d:number,m:T.Material,x:number,y:number,z:number,parent:T.Object3D=scene,round=0)=>{
   const g=round?new RoundedBoxGeometry(w,h,d,2,round):new T.BoxGeometry(w,h,d);
   const mesh=new T.Mesh(g,m);mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;parent.add(mesh);return mesh;
@@ -43,9 +46,9 @@ export function createWardrobe(host: HTMLElement) {
  for(const side of [-1,1]){
   const hinge=new T.Group();hinge.position.set(side*1.61,0,.03);scene.add(hinge);doors.push(hinge);
   const center=-side*.803;
-  box(1.596,6.76,.14,ivory,center,0,0,hinge,.025);
+  box(1.596,6.76,.14,doorBody,center,0,0,hinge,.025);
   // Quiet, inset joinery. No floating outlines or tunnel frames.
-  box(1.31,5.98,.024,mat(0xded2bd),center,0,.075,hinge,.016);
+  box(1.31,5.98,.024,doorPanel,center,0,.075,hinge,.016);
   const handleX=-side*1.46;
   box(.035,.73,.06,brass,handleX,-.18,.19,hinge,.016);
   box(.035,.035,.1,brass,handleX,.15,.12,hinge);
@@ -102,10 +105,13 @@ export function createWardrobe(host: HTMLElement) {
  const rayMat=new T.MeshBasicMaterial({color:0xffe9bf,transparent:true,opacity:.018,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending});
  for(let i=0;i<4;i++){const g=new T.PlaneGeometry(.18+i*.04,10);const ray=new T.Mesh(g,rayMat);ray.position.set(-.6+i*.43,.1,-3.3-i*3);ray.rotation.z=-.2;scene.add(ray);}
  let startZ=9;let progress=0;let pointerX=0,pointerY=0;let driftX=0,driftY=0;let motion=true;let disposed=false;
+ let idlePeek=0,travelStartPeek=0,traveling=false;
  function resize(){const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;startZ=Math.max(8.7,1.88/(Math.tan(T.MathUtils.degToRad(21))*camera.aspect));camera.updateProjectionMatrix();renderer.setSize(w,h);render(progress);}
  const smooth=(a:number,b:number,t:number)=>{const p=T.MathUtils.clamp((t-a)/(b-a),0,1);return p*p*(3-2*p);};
  function render(t:number){if(disposed)return;progress=t;
-  const opening=smooth(0,DOOR_DURATION,t),travel=cameraProgress(t);
+  const doorProgress=smooth(0,DOOR_DURATION,t);
+  const opening=fusion?(traveling?T.MathUtils.lerp(travelStartPeek,1,doorProgress):t===0?idlePeek:doorProgress):doorProgress;
+  const travel=cameraProgress(t);
   doors[0].rotation.y=-opening*1.62;doors[1].rotation.y=opening*1.62;
   const z=T.MathUtils.lerp(startZ,-18.8,travel);
   const curve=Math.sin(travel*Math.PI*2)*.19;
@@ -118,5 +124,9 @@ export function createWardrobe(host: HTMLElement) {
  }
  const observer=new ResizeObserver(resize);observer.observe(host);resize();
  const pointer=(e:PointerEvent)=>{if(e.pointerType!=='mouse')return;pointerX=e.clientX/innerWidth*2-1;pointerY=1-e.clientY/innerHeight*2;};window.addEventListener('pointermove',pointer,{passive:true});
- return {render,setMotion:(v:boolean)=>{motion=v;},canvas:renderer.domElement,dispose:()=>{disposed=true;observer.disconnect();window.removeEventListener('pointermove',pointer);scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();}});renderer.dispose();}};
+ return {render,setMotion:(v:boolean)=>{motion=v;},
+  setIdlePeek:(v:number)=>{if(fusion){idlePeek=T.MathUtils.clamp(v,0,.12);if(!traveling)render(0);}},
+  beginTravel:()=>{if(fusion){travelStartPeek=idlePeek;traveling=true;}},
+  resetTravel:()=>{if(fusion){traveling=false;idlePeek=0;travelStartPeek=0;render(0);}},
+  canvas:renderer.domElement,dispose:()=>{disposed=true;observer.disconnect();window.removeEventListener('pointermove',pointer);scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();}});renderer.dispose();}};
 }

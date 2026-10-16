@@ -33,11 +33,26 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npm run build
-      - name: Assemble both drafts
+      - name: Preserve original Codex build
         run: |
-          mkdir -p _site/codex
+          mkdir -p .codex-dist
+          cp -r codex-source/dist/. .codex-dist/
+      - name: Build separate fusion concept
+        working-directory: codex-source
+        env:
+          SITE_URL: https://rubigotrafikcash-gif.github.io
+          BASE_PATH: /-kapsluk-landing-draft/fusion/
+          PUBLIC_CONCEPT_FUSION: 'true'
+          ASTRO_TELEMETRY_DISABLED: '1'
+        run: |
+          npm run check
+          npm run build
+      - name: Assemble three noindex previews
+        run: |
+          mkdir -p _site/codex _site/fusion
           cp -r index.html favicon.svg robots.txt .nojekyll _astro v2 _site/
-          cp -r codex-source/dist/. _site/codex/
+          cp -r .codex-dist/. _site/codex/
+          cp -r codex-source/dist/. _site/fusion/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
