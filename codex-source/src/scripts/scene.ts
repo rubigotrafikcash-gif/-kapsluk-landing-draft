@@ -102,10 +102,14 @@ export function createWardrobe(host: HTMLElement) {
  const rayMat=new T.MeshBasicMaterial({color:0xffe9bf,transparent:true,opacity:.018,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending});
  for(let i=0;i<4;i++){const g=new T.PlaneGeometry(.18+i*.04,10);const ray=new T.Mesh(g,rayMat);ray.position.set(-.6+i*.43,.1,-3.3-i*3);ray.rotation.z=-.2;scene.add(ray);}
  let startZ=9;let progress=0;let pointerX=0,pointerY=0;let driftX=0,driftY=0;let motion=true;let disposed=false;
+ // A tiny preview uses the actual 3D doors, not an overlay. Latch its angle when opening starts.
+ let idlePeek=0,travelStartPeek=0,traveling=false;
  function resize(){const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;startZ=Math.max(8.7,1.88/(Math.tan(T.MathUtils.degToRad(21))*camera.aspect));camera.updateProjectionMatrix();renderer.setSize(w,h);render(progress);}
  const smooth=(a:number,b:number,t:number)=>{const p=T.MathUtils.clamp((t-a)/(b-a),0,1);return p*p*(3-2*p);};
  function render(t:number){if(disposed)return;progress=t;
-  const opening=smooth(0,DOOR_DURATION,t),travel=cameraProgress(t);
+  const doorProgress=smooth(0,DOOR_DURATION,t);
+  const opening=traveling?T.MathUtils.lerp(travelStartPeek,1,doorProgress):t>0?doorProgress:idlePeek;
+  const travel=cameraProgress(t);
   doors[0].rotation.y=-opening*1.62;doors[1].rotation.y=opening*1.62;
   const z=T.MathUtils.lerp(startZ,-18.8,travel);
   const curve=Math.sin(travel*Math.PI*2)*.19;
@@ -118,5 +122,9 @@ export function createWardrobe(host: HTMLElement) {
  }
  const observer=new ResizeObserver(resize);observer.observe(host);resize();
  const pointer=(e:PointerEvent)=>{if(e.pointerType!=='mouse')return;pointerX=e.clientX/innerWidth*2-1;pointerY=1-e.clientY/innerHeight*2;};window.addEventListener('pointermove',pointer,{passive:true});
- return {render,setMotion:(v:boolean)=>{motion=v;},canvas:renderer.domElement,dispose:()=>{disposed=true;observer.disconnect();window.removeEventListener('pointermove',pointer);scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();}});renderer.dispose();}};
+ return {render,setMotion:(v:boolean)=>{motion=v;},
+  setIdlePeek:(v:number)=>{idlePeek=T.MathUtils.clamp(v,0,.12);if(!traveling)render(0);},
+  beginTravel:()=>{travelStartPeek=idlePeek;traveling=true;},
+  resetTravel:()=>{traveling=false;idlePeek=0;travelStartPeek=0;render(0);},
+  canvas:renderer.domElement,dispose:()=>{disposed=true;observer.disconnect();window.removeEventListener('pointermove',pointer);scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();}});renderer.dispose();}};
 }
