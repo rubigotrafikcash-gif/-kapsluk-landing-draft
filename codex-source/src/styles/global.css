@@ -86,3 +86,39 @@ html.fusion-concept{background:#f6f3ec;color:#2b2626}
 @media(max-width:600px){
  .fusion-concept #welcome .handle-label{font-size:clamp(15px,4.4vw,18px);left:-55px;right:-55px}
 }
+
+/* Fusion: a separate footer below the full-screen journey, revealed by normal scrolling. */
+html.fusion-concept.fusion-scrollable{scroll-behavior:smooth}
+html.fusion-concept.fusion-scrollable body{overflow-x:hidden;overflow-y:auto}
+html.fusion-concept:not(.fusion-scrollable) .fusion-footer{display:none}
+.fusion-concept .fusion-footer{position:relative;isolation:isolate;background:#f6f3ec;color:#2b2626;padding:clamp(64px,9vw,120px) 0 28px}
+.fusion-footer-inner{width:min(1100px,calc(100% - 48px));margin-inline:auto}
+.fusion-footer-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(46px,8vw,130px)}
+.fusion-footer-section h2{font:400 clamp(38px,4.5vw,64px)/1.02 var(--display);margin:0 0 24px;letter-spacing:-.025em}
+.fusion-footer-section h2:not(:first-child){margin-top:65px}
+.fusion-footer-section p{font:400 clamp(16px,1.35vw,19px)/1.7 Manrope,sans-serif;max-width:53ch;color:#55454a}
+.fusion-footer-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:62px;padding:16px 24px;margin-top:34px;background:#cd394f;color:#fff8f3;font:500 16px/1.35 Manrope,sans-serif}
+.fusion-footer-cta:hover{background:#b02e43}
+.fusion-footer-faq details{padding:18px 0;border-bottom:1px solid #d8c4c0}
+.fusion-footer-faq details:first-of-type{border-top:1px solid #d8c4c0}
+.fusion-footer-faq summary{cursor:pointer;font:500 17px/1.5 Manrope,sans-serif;min-height:36px}
+.fusion-footer-faq details p{padding:12px 0 6px;font-size:15px;line-height:1.65}
+.fusion-footer-bottom{display:grid;grid-template-columns:1fr 2fr;gap:40px;border-top:1px solid #d8c4c0;margin-top:clamp(70px,10vw,140px);padding-top:36px}
+.fusion-footer-brand{display:flex;align-items:center;gap:12px;letter-spacing:.16em;font:500 20px/1.2 Manrope,sans-serif}
+.fusion-footer-brand img{display:block;object-fit:cover}
+.fusion-footer-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:9px 22px}
+.fusion-footer-nav a,.fusion-footer-nav button{display:inline-flex;align-items:center;min-height:44px;padding:8px 0;font:400 14px/1.5 Manrope,sans-serif;color:#503c42;text-align:left;text-decoration:underline;text-underline-offset:4px}
+.fusion-footer-nav a:hover,.fusion-footer-nav button:hover{color:#b02e43}
+@media(max-width:700px){
+ .fusion-concept .fusion-footer{padding:64px 0 26px}
+ .fusion-footer-inner{width:calc(100% - 44px)}
+ .fusion-footer-grid{grid-template-columns:minmax(0,1fr);gap:65px}
+ .fusion-footer-section h2{font-size:clamp(36px,10vw,52px);line-height:1.02;margin-bottom:20px}
+ .fusion-footer-section h2:not(:first-child){margin-top:46px}
+ .fusion-footer-section p{font-size:16px;line-height:1.7}
+ .fusion-footer-cta{width:100%;font-size:15px;min-height:58px;margin-top:27px}
+ .fusion-footer-bottom{grid-template-columns:minmax(0,1fr);gap:22px;margin-top:75px}
+ .fusion-footer-brand{font-size:18px}
+ .fusion-footer-nav{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0}
+ .fusion-footer-nav a,.fusion-footer-nav button{min-height:47px;font-size:15px}
+}
