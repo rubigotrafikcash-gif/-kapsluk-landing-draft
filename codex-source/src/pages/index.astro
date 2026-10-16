@@ -24,7 +24,7 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 <div id="stage" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 <section id="welcome" aria-label="Открыть шкаф">
-<button id="open-wardrobe" aria-label="Потянуть ручку и открыть шкаф" aria-expanded="false">{!fusion && <span class="handle-cue" aria-hidden="true"></span>}<span class="handle-label">Потяните за ручку{!fusion && <><br/><small>или коснитесь</small></>}</span></button>
+<button id="open-wardrobe" aria-label="Потянуть ручку и открыть шкаф" aria-expanded="false">{!fusion && <span class="handle-cue" aria-hidden="true"></span>}{fusion ? <span class="handle-label">Потяните за ручку</span> : <span class="handle-label">Потяните за ручку<br/><small>или коснитесь</small></span>}</button>
 <p id="load-state" class="sr-only" role="status">Подготавливаем гардероб…</p>
 </section>
 <section id="chapters" aria-label="О боте" inert>
@@ -36,7 +36,7 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 <h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2>
 <p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p>
 <a class="primary" href={fusion ? site.telegramUrl : `${base}app/`} target={fusion ? "_blank" : undefined} rel={fusion ? "noopener noreferrer" : undefined}>{fusion ? "Создать первую капсулу бесплатно" : "Открыть веб-приложение"} <span aria-hidden="true">→</span></a>
-<p class="offer-note">{fusion ? "Готовый лукбук за 20 минут вместо двух часов" : <>Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></>}</p>
+<p class="offer-note">{fusion ? "Готовый лукбук за 20 минут вместо двух часов" : "Сейчас доступен приватный кликабельный прототип. "}{!fusion && <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a>}</p>
 {!fusion && <p class="legal-links"><button type="button" data-dialog="privacy">Политика обработки данных</button><span aria-hidden="true"> · </span><button type="button" data-dialog="terms">Условия использования</button></p>}
 </div>
 </section>
