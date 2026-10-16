@@ -122,3 +122,46 @@ html.fusion-concept:not(.fusion-scrollable) .fusion-footer{display:none}
  .fusion-footer-nav{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0}
  .fusion-footer-nav a,.fusion-footer-nav button{min-height:47px;font-size:15px}
 }
+
+/* Fusion hero: keep Codex stage, make the third animation message the primary value proposition. */
+.fusion-concept .fusion-value-copy{width:min(100%,860px);max-width:860px}
+.fusion-concept .fusion-value-copy .fusion-value-headline{
+ display:flex;flex-direction:column;align-items:center;
+ gap:clamp(7px,1.1svh,17px);margin:0 0 clamp(18px,3.3svh,32px);
+ font:400 1rem/1 var(--display);letter-spacing:-.025em;text-align:center;
+}
+.fusion-concept .fusion-value-lead{
+ display:block;font-size:clamp(42px,5.5vw,72px);line-height:.99;
+ max-width:19ch;text-wrap:balance;color:#332a2c;
+}
+.fusion-concept .fusion-value-time{
+ display:block;font-size:clamp(77px,10vw,136px);line-height:.87;
+ white-space:nowrap;letter-spacing:-.048em;color:#a92c41;
+}
+.fusion-concept .fusion-value-prefix{font-size:.53em;letter-spacing:-.025em}
+.fusion-concept .fusion-value-compare{
+ display:block;font-size:clamp(39px,5.15vw,66px);line-height:1;
+ text-wrap:balance;color:#332a2c;
+}
+.fusion-concept .fusion-value-copy .fusion-value-support{
+ max-width:520px;font-size:clamp(16px,1.55vw,20px);line-height:1.53;
+ color:#403537;text-wrap:pretty;
+}
+.fusion-concept .fusion-value-copy .primary{margin-top:clamp(20px,3.8svh,30px)}
+@media(max-width:600px){
+ .fusion-concept #final-screen{padding:clamp(82px,11svh,104px) 22px clamp(90px,12svh,118px)}
+ .fusion-concept .fusion-value-copy .fusion-value-headline{gap:clamp(7px,1.5svh,13px);margin-bottom:clamp(18px,3.1svh,25px)}
+ .fusion-concept .fusion-value-lead{font-size:clamp(39px,10.1vw,52px);max-width:12ch;line-height:.96}
+ .fusion-concept .fusion-value-time{font-size:clamp(70px,17vw,88px);line-height:.86}
+ .fusion-concept .fusion-value-compare{font-size:clamp(39px,9.9vw,52px);line-height:.96}
+ .fusion-concept .fusion-value-copy .fusion-value-support{font-size:clamp(15px,3.9vw,17px);line-height:1.48;max-width:35ch}
+ .fusion-concept .fusion-value-copy .primary{font-size:clamp(15px,4vw,17px);gap:12px;margin-top:clamp(19px,3.5svh,26px);min-height:60px}
+}
+@media(max-height:690px){
+ .fusion-concept .fusion-value-copy .fusion-value-headline{gap:5px;margin-bottom:13px}
+ .fusion-concept .fusion-value-lead{font-size:clamp(35px,8.7vw,46px)}
+ .fusion-concept .fusion-value-time{font-size:clamp(64px,15.8vw,82px)}
+ .fusion-concept .fusion-value-compare{font-size:clamp(35px,8.7vw,48px)}
+ .fusion-concept .fusion-value-copy .fusion-value-support{font-size:15px;line-height:1.42}
+ .fusion-concept .fusion-value-copy .primary{margin-top:17px;min-height:56px}
+}
