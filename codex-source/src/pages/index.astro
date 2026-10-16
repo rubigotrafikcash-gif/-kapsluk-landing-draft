@@ -44,6 +44,33 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 <footer id="bottom-bar" class="chrome"><button id="restart">Повторить путешествие</button></footer>
 <p id="story-status" class="sr-only" role="status" aria-live="polite"></p>
 </main>
+{fusion && <footer id="fusion-footer" class="fusion-footer" aria-label="Информация о КАПСЛУК">
+ <div class="fusion-footer-inner">
+  <div class="fusion-footer-grid">
+   <section class="fusion-footer-section">
+    <h2>Бот помогает, стилист решает</h2>
+    <p>Вы выбираете предметы одежды, обувь и аксессуары. КАПСЛУК помогает с обработкой изображений, сочетаниями и оформлением PDF-лукбука. Стилистическое решение остаётся за вами.</p>
+    <h2>Что происходит с материалами</h2>
+    <p>Через 24 часа после успешного создания PDF удаляются исходные изображения и промежуточные рабочие файлы. Итоговый PDF и профиль стилиста сохраняются.</p>
+    <a class="fusion-footer-cta" href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Создать первую капсулу бесплатно <span aria-hidden="true">→</span></a>
+   </section>
+   <section class="fusion-footer-section fusion-footer-faq">
+    <h2>Вопросы</h2>
+    {site.faq.map(([question,answer])=><details><summary>{question}</summary><p>{answer}</p></details>)}
+   </section>
+  </div>
+  <div class="fusion-footer-bottom">
+   <div class="fusion-footer-brand"><img src={`${base}logo.jpeg`} width="42" height="42" alt=""/><span>КАПСЛУК</span></div>
+   <nav aria-label="Навигация и контакты" class="fusion-footer-nav">
+    <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Telegram-бот</a>
+    <a href={site.supportUrl} target="_blank" rel="noopener noreferrer">Поддержка в Telegram</a>
+    <a href="mailto:support@tairpromo.ru">support@tairpromo.ru</a>
+    <button type="button" data-dialog="privacy">Политика конфиденциальности</button>
+    <button type="button" data-dialog="terms">Условия использования</button>
+   </nav>
+  </div>
+ </div>
+</footer>}
 <dialog id="dialog-menu" aria-labelledby="menu-title">
   <div class="menu-top">
     <div class="menu-brand"><img src={`${base}logo.jpeg`} width="34" height="34" alt=""/><span>КАПСЛУК</span></div>
