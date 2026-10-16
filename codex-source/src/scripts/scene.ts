@@ -106,7 +106,20 @@ export function createWardrobe(host: HTMLElement) {
  for(let i=0;i<4;i++){const g=new T.PlaneGeometry(.18+i*.04,10);const ray=new T.Mesh(g,rayMat);ray.position.set(-.6+i*.43,.1,-3.3-i*3);ray.rotation.z=-.2;scene.add(ray);}
  let startZ=9;let progress=0;let pointerX=0,pointerY=0;let driftX=0,driftY=0;let motion=true;let disposed=false;
  let idlePeek=0,travelStartPeek=0,traveling=false;
- function resize(){const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;startZ=Math.max(8.7,1.88/(Math.tan(T.MathUtils.degToRad(21))*camera.aspect));camera.updateProjectionMatrix();renderer.setSize(w,h);render(progress);}
+ function resize(){
+  const w=Math.max(host.clientWidth,1),h=Math.max(host.clientHeight,1);
+  camera.aspect=w/h;
+  const tanHalfFov=Math.tan(T.MathUtils.degToRad(camera.fov/2));
+  if(fusion){
+   // Frame the entire 3D wardrobe in both dimensions on every mobile aspect ratio.
+   const fitWidth=1.78/(tanHalfFov*camera.aspect*.93);
+   const fitHeight=3.50/(tanHalfFov*.87);
+   startZ=Math.max(8.7,fitWidth,fitHeight);
+  }else{
+   startZ=Math.max(8.7,1.88/(tanHalfFov*camera.aspect));
+  }
+  camera.updateProjectionMatrix();renderer.setSize(w,h);render(progress);
+ }
  const smooth=(a:number,b:number,t:number)=>{const p=T.MathUtils.clamp((t-a)/(b-a),0,1);return p*p*(3-2*p);};
  function render(t:number){if(disposed)return;progress=t;
   const doorProgress=smooth(0,DOOR_DURATION,t);
