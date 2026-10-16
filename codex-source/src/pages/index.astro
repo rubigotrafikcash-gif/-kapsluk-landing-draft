@@ -24,9 +24,7 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 <div id="stage" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 <section id="welcome" aria-label="Открыть шкаф">
-{fusion && <div class="fusion-intro" aria-hidden="true"><div class="fusion-brand"><img src={`${base}logo.jpeg`} width="38" height="38" alt=""/><span>КАПСЛУК</span></div><div class="fusion-strap">Для стилистов, которые создают образы</div></div>}
-<button id="open-wardrobe" aria-label="Потянуть ручку и открыть шкаф" aria-expanded="false">{!fusion && <span class="handle-cue" aria-hidden="true"></span>}<span class="handle-label">Потяните за ручку<br/><small>или коснитесь</small></span></button>
-{fusion && <p class="fusion-before-copy">Бот помогает. Стилист решает.</p>}
+<button id="open-wardrobe" aria-label="Потянуть ручку и открыть шкаф" aria-expanded="false">{!fusion && <span class="handle-cue" aria-hidden="true"></span>}<span class="handle-label">Потяните за ручку{!fusion && <><br/><small>или коснитесь</small></>}</span></button>
 <p id="load-state" class="sr-only" role="status">Подготавливаем гардероб…</p>
 </section>
 <section id="chapters" aria-label="О боте" inert>
@@ -34,20 +32,13 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 </section>
 <div class="story-controls" id="story-controls"><button id="pause" hidden>Пауза</button><button id="skip-story">Пропустить</button></div>
 <section id="final-screen" aria-labelledby="final-title">
-{fusion ? <div class="final-copy fusion-final-copy">
-  <p class="fusion-kicker">БОТ ПОМОГАЕТ · СТИЛИСТ РЕШАЕТ</p>
-  <h2 id="final-title" tabindex="-1">Образы — ваша работа.<br/>Лукбук — наша.</h2>
-  <p class="final-intro">Выбирайте предметы одежды, обувь и аксессуары. КАПСЛУК помогает собрать сочетания и оформить PDF-лукбук для клиента.</p>
-  <a class="primary" href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Создать первую капсулу бесплатно <span aria-hidden="true">↗</span></a>
-  <p class="fusion-promise">Готовый лукбук за 20 минут вместо двух часов</p>
-  <nav class="fusion-quicklinks" aria-label="Узнать о сервисе">
-    <button type="button" data-dialog="process">Как это работает <span aria-hidden="true">↗</span></button>
-    <button type="button" data-dialog="result">Что будет в PDF <span aria-hidden="true">↗</span></button>
-    <button type="button" data-dialog="faq">Вопросы <span aria-hidden="true">↗</span></button>
-    <button type="button" data-dialog="materials">Материалы и данные <span aria-hidden="true">↗</span></button>
-  </nav>
-  <p class="fusion-disclaimer">Дизайн-концепт для согласования. Заявленные возможности проходят тестирование.</p>
-</div> : <div class="final-copy"><h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2><p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p><a class="primary" href={`${base}app/`}>Открыть веб-приложение <span aria-hidden="true">→</span></a><p class="offer-note">Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></p><p class="legal-links"><button type="button" data-dialog="privacy">Политика обработки данных</button><span aria-hidden="true"> · </span><button type="button" data-dialog="terms">Условия использования</button></p></div>}
+<div class="final-copy">
+<h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2>
+<p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p>
+<a class="primary" href={fusion ? site.telegramUrl : `${base}app/`} target={fusion ? "_blank" : undefined} rel={fusion ? "noopener noreferrer" : undefined}>{fusion ? "Создать первую капсулу бесплатно" : "Открыть веб-приложение"} <span aria-hidden="true">→</span></a>
+<p class="offer-note">{fusion ? "Готовый лукбук за 20 минут вместо двух часов" : <>Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></>}</p>
+{!fusion && <p class="legal-links"><button type="button" data-dialog="privacy">Политика обработки данных</button><span aria-hidden="true"> · </span><button type="button" data-dialog="terms">Условия использования</button></p>}
+</div>
 </section>
 <header id="top-bar" class="chrome"><a id="brand" href="#welcome" aria-label="КАПСЛУК — начать заново"><img src={`${base}logo.jpeg`} width="36" height="36" alt=""/><span>КАПСЛУК</span></a><button data-dialog="menu">Меню <span aria-hidden="true">＋</span></button></header>
 <footer id="bottom-bar" class="chrome"><button id="restart">Повторить путешествие</button></footer>
