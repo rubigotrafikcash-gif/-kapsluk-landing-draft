@@ -35,7 +35,7 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
 <div class={fusion ? "final-copy fusion-value-copy" : "final-copy"}>
 {fusion ? (
   <h2 id="final-title" class="fusion-value-headline" tabindex="-1">
-    <span class="fusion-value-lead">Готовый лукбук для клиента</span>
+    <span class="fusion-value-lead">Готовый лукбук</span>
     <span class="fusion-value-time"><span class="fusion-value-prefix">за </span>20 минут</span>
     <span class="fusion-value-compare">вместо двух часов</span>
   </h2>
@@ -43,12 +43,12 @@ const fusion = import.meta.env.PUBLIC_CONCEPT_FUSION === 'true';
   <h2 id="final-title" tabindex="-1">Собирайте капсулы<br class="desktop-break"/> для клиентов в Telegram</h2>
 )}
 {fusion ? (
-  <p class="final-intro fusion-value-support">Вы выбираете вещи и создаёте образы. КАПСЛУК помогает собрать сочетания и оформить PDF-лукбук для клиента в Telegram.</p>
+  <p class="final-intro fusion-value-support">Добавляйте выбранные вещи, собирайте капсулы и оформляйте PDF для клиента</p>
 ) : (
   <p class="final-intro">Добавляйте выбранные вещи, собирайте сочетания и оформляйте PDF-лукбук для клиента.</p>
 )}
 <a class="primary" href={fusion ? site.telegramUrl : `${base}app/`} target={fusion ? "_blank" : undefined} rel={fusion ? "noopener noreferrer" : undefined}>{fusion ? "Создать первую капсулу бесплатно" : "Открыть веб-приложение"} <span aria-hidden="true">→</span></a>
-{!fusion && <p class="offer-note">Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></p>}
+{fusion ? <p class="offer-note">Собирайте капсулы для клиентов в Telegram</p> : <p class="offer-note">Сейчас доступен приватный кликабельный прототип. <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer">Перейти в Telegram ↗</a></p>}
 {!fusion && <p class="legal-links"><button type="button" data-dialog="privacy">Политика обработки данных</button><span aria-hidden="true"> · </span><button type="button" data-dialog="terms">Условия использования</button></p>}
 </div>
 </section>
