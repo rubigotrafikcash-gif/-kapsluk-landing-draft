@@ -69,56 +69,20 @@
 @media(max-height:700px){#dialog-menu h2{margin:18px 0 12px}.menu-cta{margin:13px 0 7px;min-height:54px}.menu-link{min-height:49px}.menu-legal{padding-top:14px}}
 
 
-/* Fusion design concept — exclusively enabled on /fusion/; original Codex remains intact. */
+/* Fusion uses the already approved Codex layout; these overrides only recolor it. */
 html.fusion-concept{background:#f6f3ec;color:#2b2626}
-.fusion-concept #stage{background:radial-gradient(ellipse at 50% 36%,#f9e7e7,#edd6d3 70%,#d8b3ae)}
-.fusion-concept .vignette{background:radial-gradient(ellipse at 50% 40%,transparent 52%,#571b2b22 100%)}
-.fusion-concept #welcome .handle-label{color:#fff7f3;text-shadow:0 2px 12px #661d36,0 1px 4px #481321;font-weight:500}
-.fusion-concept #welcome .handle-label small{color:#fff2ec}
-.fusion-concept #welcome #open-wardrobe{top:42%;height:30%}
+.fusion-concept #stage{background:radial-gradient(ellipse at 50% 38%,#faf0ed,#e9d0c8 72%,#d9c0b3)}
+.fusion-concept .vignette{background:radial-gradient(ellipse at 50% 43%,transparent 53%,#48242b29 100%)}
+.fusion-concept #welcome .handle-label{color:#fffaf6;text-shadow:0 2px 8px #521523,0 1px 3px #521523;font-size:1rem;white-space:nowrap}
 .fusion-concept #welcome .handle-cue{display:none!important}
-.fusion-intro{position:absolute;top:max(26px,env(safe-area-inset-top));left:22px;right:22px;display:flex;flex-direction:column;align-items:center;gap:12px;color:#381e26;text-align:center}
-.fusion-brand{display:flex;align-items:center;gap:11px;font:600 clamp(20px,4.5vw,30px)/1 Manrope,sans-serif;letter-spacing:.24em}
-.fusion-brand img{width:38px;height:38px;object-fit:cover;border-radius:5px}
-.fusion-strap{font-size:clamp(11px,2.3vw,14px);letter-spacing:.16em;text-transform:uppercase;font-weight:500;line-height:1.4}
-.fusion-before-copy{position:absolute;bottom:max(6.5%,env(safe-area-inset-bottom));left:20px;right:20px;text-align:center;font:italic 400 clamp(27px,3.8vw,46px)/1.05 var(--display);color:#531e31;text-shadow:0 1px 16px #f6eae8}
-.fusion-concept #final-screen{background:radial-gradient(ellipse at 50% 48%,#fff9f5fb,#f8edefed 65%,#eac9ccaa 100%);padding:92px 23px 110px}
-.fusion-concept .fusion-final-copy{width:min(100%,890px)}
-.fusion-concept .fusion-kicker{font-size:.71rem;letter-spacing:.21em;color:#9c3047;font-weight:700}
-.fusion-concept .fusion-final-copy h2{font:400 clamp(46px,5.5vw,84px)/.95 var(--display);margin:16px 0 20px;letter-spacing:-.028em;color:#37232b}
-.fusion-concept .fusion-final-copy .final-intro{font-size:clamp(16px,1.45vw,20px);line-height:1.6;max-width:600px}
-.fusion-concept .fusion-final-copy .primary{background:#cd394f;color:#fff;border-radius:2px;min-height:60px;gap:16px;margin-top:26px;max-width:100%;white-space:normal}
-.fusion-concept .fusion-final-copy .primary:hover,.fusion-concept .menu-cta:hover{background:#b02e43}
-.fusion-concept .fusion-promise{margin:16px 0 0;font-size:.81rem;color:#783a46}
-.fusion-quicklinks{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px 19px;margin-top:29px;border-top:1px solid #dbbfc2;padding-top:15px}
-.fusion-quicklinks button{font:500 .76rem/1.4 Manrope,sans-serif;padding:8px 2px;min-height:42px;color:#473139;white-space:nowrap}
-.fusion-quicklinks span{color:#b02e43}
-.fusion-disclaimer{font-size:.65rem!important;line-height:1.4;margin-top:11px;color:#866872}
-.fusion-concept #brand span{color:#5b2739}
-.fusion-concept .menu-cta{background:#cd394f}
+.fusion-concept #experience[data-state="closed"] .story-controls{display:none}
+.fusion-concept #final-screen{background:radial-gradient(ellipse,#faf5effa 12%,#f6eae8ed 58%,#f2dddccc 100%)}
+.fusion-concept .primary,.fusion-concept .menu-cta{background:#cd394f;color:#fff8f3}
+.fusion-concept .primary:hover,.fusion-concept .menu-cta:hover{background:#b02e43}
+.fusion-concept #brand span{color:#382c2c}
+.fusion-concept .offer-note{color:#6d4248}
 .fusion-concept #dialog-menu{border-color:#d9bbc1}
-.fusion-concept .story-controls button{background:#fff2f1cf;color:#50283a}
+.fusion-concept .story-controls button{background:#fff4f0ed;color:#5b2739}
 @media(max-width:600px){
- .fusion-intro{top:max(18px,env(safe-area-inset-top));gap:8px}
- .fusion-brand{font-size:20px}.fusion-brand img{width:32px;height:32px}
- .fusion-strap{max-width:30ch;letter-spacing:.09em;font-size:11px}
- .fusion-before-copy{bottom:max(7%,env(safe-area-inset-bottom));font-size:clamp(24px,6.4vw,32px)}
- .fusion-concept #welcome .handle-label{font-size:15px}
- .fusion-concept #final-screen{padding:72px 19px 78px}
- .fusion-concept .fusion-final-copy h2{font-size:clamp(43px,11vw,58px);margin:12px 0 17px}
- .fusion-concept .fusion-final-copy .final-intro{font-size:15px;line-height:1.55}
- .fusion-concept .fusion-final-copy .primary{font-size:14px;padding:14px 14px;margin-top:19px;gap:8px;min-height:55px}
- .fusion-quicklinks{margin-top:15px;gap:0 12px;padding-top:8px}
- .fusion-quicklinks button{font-size:11px;min-height:37px}
- .fusion-concept .fusion-promise{font-size:12px;margin-top:10px}
- .fusion-disclaimer{font-size:10px!important}
-}
-@media(max-height:680px) {
- .fusion-concept #final-screen{padding-top:48px;padding-bottom:64px;display:block}
- .fusion-final-copy{margin:auto}
- .fusion-concept .fusion-final-copy h2{font-size:clamp(39px,8vw,66px);margin:8px 0 12px}
- .fusion-quicklinks{margin-top:12px}
- .fusion-concept .fusion-final-copy .primary{margin-top:14px}
- .fusion-intro{top:12px}
- .fusion-before-copy{bottom:5%}
+ .fusion-concept #welcome .handle-label{font-size:clamp(15px,4.4vw,18px);left:-55px;right:-55px}
 }
